@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulhamit Uzun - Zafer Partisi Erzurum İl Başkanı</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .lightbox-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .lightbox-image {
+        max-width: 100%;
+        max-height: 90vh;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-lightbox {
+        position: absolute;
+        top: -30px;
+        right: 0;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    .hero-scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+    }
+
+    .hero-scroll-indicator a {
+        color: white;
+        font-size: 24px;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-20px); }
+        60% { transform: translateY(-10px); }
+    }
+
+    .stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .stat-item {
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+    }
+
+    .stat-item:hover {
+        transform: translateY(-10px);
+    }
+
+    .stat-item i {
+        font-size: 2.5rem;
+        color: #e63946;
+        margin-bottom: 15px;
+    }
+
+    .stat-item h3 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #1d3557;
+    }
+
+    .form-group {
+        position: relative;
+        margin-bottom: 25px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 16px;
+        background: transparent;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .form-group label {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        font-size: 16px;
+        color: #777;
+        transition: all 0.3s;
+        pointer-events: none;
+    }
+
+    .form-group input:focus ~ label,
+    .form-group textarea:focus ~ label,
+    .form-group input:valid ~ label,
+    .form-group textarea:valid ~ label {
+        top: -10px;
+        left: 10px;
+        font-size: 12px;
+        background-color: white;
+        padding: 0 5px;
+        color: #e63946;
+    }
+
+    .error-message {
+        color: #e63946;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none;
+    }
+
+    .form-group.error .error-message {
+        display: block;
+    }
+
+    .form-group.error input,
+    .form-group.error textarea {
+        border-color: #e63946;
+    }
+
+    .form-success-message {
+        background-color: #4BB543;
+        color: white;
+        padding: 15px;
+        border-radius: 4px;
+        margin-top: 20px;
+        text-align: center;
+        opacity: 1;
+        transition: opacity 0.3s;
+    }
+
+    .btn-loading {
+        display: none;
+    }
+
+    .contact-form.sending .btn-text {
+        display: none;
+    }
+
+    .contact-form.sending .btn-loading {
+        display: inline-block;
+    }
+
+    .contact-form.success .btn {
+        background-color: #4BB543;
+    }
+    </style>
+</head>
+<body>
+    <!-- Header Bölümü -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="yataylogoteksatir.png" alt="Zafer Partisi" class="header-logo">
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#hakkimda">Hakkımda</a></li>
+                    <li><a href="#faaliyetler">Faaliyetler</a></li>
+                    <li><a href="#galeri">Galeri</a></li>
+                    <li><a href="#basin">Basın</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Yeni Hero Bölümü -->
+    <section id="hero" class="modern-hero">
+        <div class="hero-background">
+            <div class="hero-particles"></div>
+            <div class="hero-gradient"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-logo-container">
+                <img src="resmilogo.png" alt="Zafer Partisi Logo" class="hero-logo">
+                <div class="hero-logo-glow"></div>
+            </div>
+            
+            <div class="hero-text-container">
+                <h1 class="hero-title">Abdulhamit Uzun</h1>
+                <h2 class="hero-subtitle">Zafer Partisi Erzurum İl Başkanı</h2>
+                <p class="hero-description">Güçlü Türkiye, Güçlü Gelecek İçin Çalışıyoruz</p>
+                <div class="hero-buttons">
+                    <a href="#hakkimda" class="hero-btn primary-btn">Hakkımda</a>
+                    <a href="#iletisim" class="hero-btn secondary-btn">İletişim</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+            <a href="#hakkimda"><i class="fas fa-chevron-down"></i></a>
+        </div>
+        
+        <div class="hero-shapes">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+            <div class="hero-shape shape-3"></div>
+            <div class="hero-shape shape-4"></div>
+        </div>
+    </section>
+
+    <!-- Hakkımda Bölümü İyileştirmesi -->
+    <section id="hakkimda" class="section">
+        <div class="container">
+            <h2 class="section-title">Hakkımda</h2>
+            <div class="about-container">
+                <div class="about-image">
+                    <div class="image-frame">
+                        <img src="profile.jpg" alt="Abdulhamit Uzun">
+                        <div class="image-overlay">
+                            <div class="party-badge">
+                                <span>Zafer Partisi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Abdulhamit Uzun</h3>
+                    <h4>Zafer Partisi Erzurum İl Başkanı</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc eget ultricies aliquam, nisi nunc ultricies nunc, eget ultricies nisl nunc eget nunc. Nullam auctor, nunc eget ultricies aliquam, nisi nunc ultricies nunc.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc eget ultricies aliquam, nisi nunc ultricies nunc, eget ultricies nisl nunc eget nunc.</p>
+                    
+                    <div class="achievements">
+                        <div class="achievement-item">
+                            <i class="fas fa-trophy"></i>
+                            <h5>İl Başkanı</h5>
+                            <p>2022'den beri</p>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-users"></i>
+                            <h5>25+ Yıl</h5>
+                            <p>Siyasi tecrübe</p>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="fas fa-handshake"></i>
+                            <h5>100+</h5>
+                            <p>Proje tamamlandı</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seçim Sonuçları Bölümü - Gelişmiş Tasarım -->
+    <section id="secim-sonuclari" class="section">
+        <div class="container">
+            <h2 class="section-title">2023 Seçim Sonuçları</h2>
+            <p class="section-description">Zafer Partisi'nin Erzurum'daki başarısı</p>
+            
+            <div class="secim-stats-container">
+                <!-- Erzurum Genel Sonuç -->
+                <div class="secim-card animate-card">
+                    <div class="secim-card-header">
+                        <div class="secim-logo-wrapper">
+                            <img src="resmilogo.png" alt="Zafer Partisi Logo" class="secim-logo">
+                            <div class="secim-logo-glow"></div>
+                        </div>
+                        <h3>Zafer Partisi Erzurum</h3>
+                    </div>
+                    <div class="secim-card-stat">
+                        <div class="secim-stat-wrapper">
+                            <div class="secim-percentage animate-number">5.11<span>%</span></div>
+                            <div class="secim-votes counter-up">17,718 oy</div>
+                        </div>
+                    </div>
+                    <div class="secim-card-footer">
+                        <span>2023 Genel Seçimlerinde Erzurum Sonucu</span>
+                    </div>
+                </div>
+                
+                <!-- Abdulhamit Uzun Palandöken Sonucu -->
+                <div class="secim-card secim-candidate animate-card">
+                    <div class="secim-card-header">
+                        <div class="secim-avatar-container">
+                            <i class="fas fa-user secim-icon"></i>
+                            <div class="secim-avatar-circle"></div>
+                        </div>
+                        <h3>Abdulhamit Uzun</h3>
+                    </div>
+                    <div class="secim-card-stat">
+                        <div class="secim-stat-wrapper">
+                            <div class="secim-percentage animate-number">7.48<span>%</span></div>
+                            <div class="secim-progress-container">
+                                <div class="secim-progress">
+                                    <div class="secim-progress-bar" data-width="7.48"></div>
+                                </div>
+                                <div class="secim-progress-label">Palandöken İlçesi</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="secim-card-footer">
+                        <span>Palandöken İlçesi Belediye Başkanlığı Adayı</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faaliyetler Bölümü -->
+    <section id="faaliyetler" class="section">
+        <div class="container">
+            <h2 class="section-title">Faaliyetlerimiz</h2>
+            <p class="section-description">Erzurum'da yürüttüğümüz çalışmalar ve başarılarımız</p>
+            
+            <div class="faaliyet-stats-container">
+                <div class="faaliyet-card">
+                    <div class="faaliyet-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="faaliyet-count" data-count="42">0</div>
+                    <div class="faaliyet-title">İlçede Teşkilat</div>
+                    <div class="faaliyet-description">
+                        Erzurum'un tüm ilçelerinde güçlü teşkilatlarımızla hizmet veriyoruz.
+                    </div>
+                </div>
+                
+                <div class="faaliyet-card">
+                    <div class="faaliyet-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="faaliyet-count" data-count="10000">0</div>
+                    <span class="faaliyet-count-plus">+</span>
+                    <div class="faaliyet-title">Üye</div>
+                    <div class="faaliyet-description">
+                        On bini aşkın üyemizle Erzurum'un her köşesinde temsil ediliyoruz.
+                    </div>
+                </div>
+                
+                <div class="faaliyet-card">
+                    <div class="faaliyet-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="faaliyet-count" data-count="120">0</div>
+                    <span class="faaliyet-count-plus">+</span>
+                    <div class="faaliyet-title">Etkinlik</div>
+                    <div class="faaliyet-description">
+                        Yüzü aşkın farklı etkinlikle halkımızla buluştuk, fikirlerimizi paylaştık.
+                    </div>
+                </div>
+                
+                <div class="faaliyet-card">
+                    <div class="faaliyet-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="faaliyet-count" data-count="50">0</div>
+                    <span class="faaliyet-count-plus">+</span>
+                    <div class="faaliyet-title">Basın Açıklaması</div>
+                    <div class="faaliyet-description">
+                        Ülke ve şehir gündemine ilişkin düzenli basın açıklamalarıyla sesimizi duyurduk.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faaliyet-highlight">
+                <div class="faaliyet-highlight-content">
+                    <h3>Zafer Partisi Erzurum Teşkilatı</h3>
+                    <p>Zafer Partisi Erzurum İl Teşkilatı olarak, kurulduğumuz günden bu yana Erzurum'un sorunlarına çözüm üretmek, vatandaşlarımızın sesini duyurmak ve şehrimize hizmet etmek için var gücümüzle çalışmaktayız.</p>
+                    <a href="#iletisim" class="btn faaliyet-btn">Bize Katılın</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Bölümü -->
+    <section id="galeri" class="section">
+        <div class="container">
+            <h2 class="section-title">Galeri</h2>
+            <p class="section-description">Faaliyetlerimizden ve etkinliklerimizden kareler</p>
+            
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="pic1.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>İl Başkanlığı Toplantısı</h3>
+                            <p>15 Mayıs 2023</p>
+                            <a href="pic1.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="pic2.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Gençlik Buluşması</h3>
+                            <p>10 Haziran 2023</p>
+                            <a href="pic2.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="pic3.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>İlçe Ziyareti</h3>
+                            <p>22 Temmuz 2023</p>
+                            <a href="pic3.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="pic4.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Kongre Konuşması</h3>
+                            <p>5 Ağustos 2023</p>
+                            <a href="pic4.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="pic5.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Halk Buluşması</h3>
+                            <p>18 Eylül 2023</p>
+                            <a href="pic5.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="pic6.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h3>Basın Toplantısı</h3>
+                            <p>30 Ekim 2023</p>
+                            <a href="pic6.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Basın Bölümü -->
+    <section id="basin" class="section">
+        <div class="container">
+            <h2 class="section-title">Basında Biz</h2>
+            <div class="news-container">
+                <div class="news-item">
+                    <div class="news-date">10 Haziran 2023</div>
+                    <h3>Zafer Partisi İl Kongresi Yapıldı</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc eget ultricies aliquam.</p>
+                    <a href="#" class="read-more">Devamını Oku →</a>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">25 Mayıs 2023</div>
+                    <h3>Abdulhamit Uzun'dan Ekonomi Açıklaması</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc eget ultricies aliquam.</p>
+                    <a href="#" class="read-more">Devamını Oku →</a>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">12 Mayıs 2023</div>
+                    <h3>İl Başkanı Uzun: "Gençlerimiz Geleceğimizdir"</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc eget ultricies aliquam.</p>
+                    <a href="#" class="read-more">Devamını Oku →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Bölümü -->
+    <section class="iletisim-sayfasi">
+        <div class="container">
+            <h1 class="iletisim-baslik">İletişim</h1>
+            
+            <div class="iletisim-icerik">
+                <div class="iletisim-bilgileri">
+                    <div class="iletisim-bilgi-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Zafer Partisi Erzurum İl Başkanlığı, Adres Caddesi No:123, Erzurum</span>
+                    </div>
+                    
+                    <div class="iletisim-bilgi-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+90 (555) 123 45 67</span>
+                    </div>
+                    
+                    <div class="iletisim-bilgi-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>iletisim@abdulhamituzun.com</span>
+                    </div>
+                    
+                    <div class="iletisim-sosyal">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <form class="iletisim-form">
+                    <div class="iletisim-form-grup">
+                        <label for="isim">İsim Soyisim</label>
+                        <input type="text" id="isim" placeholder="İsim Soyisim" required>
+                    </div>
+                    
+                    <div class="iletisim-form-grup">
+                        <label for="eposta">E-posta</label>
+                        <input type="email" id="eposta" placeholder="E-posta" required>
+                    </div>
+                    
+                    <div class="iletisim-form-grup">
+                        <label for="telefon">
+                            <span class="telefon-label">Telefon</span>
+                        </label>
+                        <input type="tel" id="telefon" placeholder="Telefon">
+                    </div>
+                    
+                    <div class="iletisim-form-grup">
+                        <label for="mesaj">Mesajınız</label>
+                        <textarea id="mesaj" placeholder="Mesajınız" required></textarea>
+                    </div>
+                    
+                    <button type="submit">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Bölümü -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="yataylogo2satir.png" alt="Zafer Partisi Logo" class="footer-logo-wide">
+                    <h3>Abdulhamit Uzun</h3>
+                    <p>Zafer Partisi Erzurum İl Başkanı</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Hızlı Bağlantılar</h4>
+                    <ul>
+                        <li><a href="#hakkimda">Hakkımda</a></li>
+                        <li><a href="#faaliyetler">Faaliyetler</a></li>
+                        <li><a href="#galeri">Galeri</a></li>
+                        <li><a href="#basin">Basın</a></li>
+                        <li><a href="#iletisim">İletişim</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>İletişim</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Zafer Partisi Erzurum İl Başkanlığı, Adres Caddesi No:123, Erzurum</p>
+                    <p><i class="fas fa-phone"></i> +90 (555) 123 45 67</p>
+                    <p><i class="fas fa-envelope"></i> iletisim@abdulhamituzun.com</p>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Sosyal Medya</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Abdulhamit Uzun. Tüm hakları saklıdır.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Gizlilik Politikası</a>
+                    <a href="#">Kullanım Şartları</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-shape"></div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="placeholder.js"></script>
+</body>
+</html> 
