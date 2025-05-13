@@ -976,6 +976,245 @@
             grid-template-columns: 1fr;
         }
     }
+
+    /* Mobile Menu Fixes */
+    .hamburger-menu {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    
+    .hamburger-menu .bar {
+        height: 3px;
+        width: 100%;
+        background-color: #1d3557;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+    
+    /* Mobile Menu Styles */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: 100%;
+        background-color: white;
+        z-index: 1000;
+        padding: 70px 30px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        overflow-y: auto;
+    }
+    
+    .mobile-menu-open .mobile-menu {
+        right: 0;
+    }
+    
+    .mobile-menu-open .mobile-menu-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .mobile-menu-open .hamburger-menu .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .mobile-menu-open .hamburger-menu .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-open .hamburger-menu .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    .mobile-menu nav .menu {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .mobile-menu nav .menu li {
+        margin: 0;
+        width: 100%;
+    }
+    
+    .mobile-menu nav .menu li a {
+        display: block;
+        font-size: 18px;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    /* Responsive header adjustments */
+    @media (max-width: 768px) {
+        header {
+            height: auto;
+            padding: 10px 0;
+        }
+        
+        header .container {
+            padding: 0 15px;
+        }
+        
+        .logo-container {
+            justify-content: flex-start;
+            margin: 0;
+            height: 40px;
+        }
+        
+        .header-logo {
+            height: 28px;
+        }
+        
+        .header-title-group h1 {
+            font-size: 18px;
+        }
+        
+        .header-title-group span {
+            font-size: 10px;
+        }
+        
+        nav .menu {
+            display: none;
+        }
+        
+        .hamburger-menu {
+            display: flex;
+        }
+    }
+
+    /* Embedded Tweet Styles */
+    .embedded-tweet {
+        border: 1px solid #e1e8ed;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 15px;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        transition: all 0.2s ease;
+    }
+    
+    .embedded-tweet:hover {
+        border-color: #ccd6dd;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .tweet-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    
+    .tweet-profile-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    
+    .tweet-author {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .tweet-name {
+        font-weight: 600;
+        font-size: 15px;
+        color: #14171a;
+    }
+    
+    .tweet-handle {
+        font-size: 13px;
+        color: #657786;
+    }
+    
+    .tweet-content {
+        margin-bottom: 12px;
+        line-height: 1.4;
+        color: #14171a;
+    }
+    
+    .tweet-date {
+        font-size: 13px;
+        color: #657786;
+        margin-bottom: 12px;
+    }
+    
+    .tweet-actions {
+        border-top: 1px solid #e1e8ed;
+        padding-top: 12px;
+    }
+    
+    .view-on-twitter {
+        display: inline-flex;
+        align-items: center;
+        color: #1da1f2;
+        font-size: 14px;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    
+    .view-on-twitter i {
+        margin-right: 6px;
+    }
+    
+    .view-on-twitter:hover {
+        color: #0c85d0;
+    }
+    
+    .twitter-fallback-header {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .twitter-fallback-header p {
+        font-size: 18px;
+        font-weight: 600;
+        color: #14171a;
+    }
+    
+    .twitter-footer {
+        margin-top: 15px;
+        text-align: center;
+    }
+    
+    .view-all-tweets {
+        display: inline-flex;
+        align-items: center;
+        background-color: #e63946;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background-color 0.2s;
+    }
+    
+    .view-all-tweets i {
+        margin-left: 8px;
+    }
+    
+    .view-all-tweets:hover {
+        background-color: #c1272d;
+    }
     </style>
 </head>
 <body>
@@ -1000,6 +1239,29 @@
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Menu Button -->
+    <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <nav>
+            <ul class="menu">
+                <li><a href="#hakkimda">Hakkımda</a></li>
+                <li><a href="#faaliyetler">Faaliyetler</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#basin">Basın</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <!-- Yeni Hero Bölümü -->
     <section id="hero" class="modern-hero">
@@ -1501,340 +1763,5 @@
 
     <script src="script.js"></script>
     <script src="placeholder.js"></script>
-    <script>
-        // Enhanced Gallery functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Filter functionality
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const galleryThumbnails = document.querySelectorAll('.gallery-thumbnail');
-            let visibleThumbnails = [...galleryThumbnails];
-            
-            // Initialize the gallery
-            updateFeaturedImage(galleryThumbnails[0]);
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Filter items
-                    const filterValue = this.getAttribute('data-filter');
-                    
-                    galleryThumbnails.forEach(item => {
-                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                    
-                    // Update visible thumbnails
-                    visibleThumbnails = [...galleryThumbnails].filter(
-                        item => filterValue === 'all' || item.getAttribute('data-category') === filterValue
-                    );
-                    
-                    // Update featured image if active one is now hidden
-                    if (visibleThumbnails.length > 0) {
-                        const activeThumbnail = document.querySelector('.gallery-thumbnail.active');
-                        if (!activeThumbnail || activeThumbnail.style.display === 'none') {
-                            updateActiveThumbnail(visibleThumbnails[0]);
-                            updateFeaturedImage(visibleThumbnails[0]);
-                        }
-                    }
-                });
-            });
-            
-            // Thumbnail click functionality
-            galleryThumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function() {
-                    updateActiveThumbnail(this);
-                    updateFeaturedImage(this);
-                });
-            });
-            
-            function updateActiveThumbnail(thumbnail) {
-                // Remove active class from all thumbnails
-                galleryThumbnails.forEach(thumb => thumb.classList.remove('active'));
-                // Add active class to clicked thumbnail
-                thumbnail.classList.add('active');
-            }
-            
-            function updateFeaturedImage(thumbnail) {
-                const featured = document.querySelector('.featured-image');
-                const imageSrc = thumbnail.getAttribute('data-src');
-                const title = thumbnail.getAttribute('data-title');
-                const desc = thumbnail.getAttribute('data-desc');
-                
-                // Animate out
-                featured.classList.remove('active');
-                
-                // Update content after short delay
-                setTimeout(() => {
-                    featured.style.backgroundImage = `url('${imageSrc}')`;
-                    featured.querySelector('h3').textContent = title;
-                    featured.querySelector('p').textContent = desc;
-                    
-                    // Animate in
-                    featured.classList.add('active');
-                }, 400);
-            }
-            
-            // Carousel arrows functionality
-            const prevArrow = document.querySelector('.prev-arrow');
-            const nextArrow = document.querySelector('.next-arrow');
-            const thumbnailsContainer = document.querySelector('.gallery-thumbnails');
-            
-            prevArrow.addEventListener('click', () => {
-                thumbnailsContainer.scrollBy({ left: -300, behavior: 'smooth' });
-            });
-            
-            nextArrow.addEventListener('click', () => {
-                thumbnailsContainer.scrollBy({ left: 300, behavior: 'smooth' });
-            });
-            
-            // View All Button - Opens Lightbox with first image
-            const viewAllBtn = document.querySelector('.view-all-btn');
-            viewAllBtn.addEventListener('click', function() {
-                openLightbox(0);
-            });
-            
-            // Featured image click - Opens Lightbox
-            document.querySelector('.featured-slide').addEventListener('click', function() {
-                const activeThumbnail = document.querySelector('.gallery-thumbnail.active');
-                const index = visibleThumbnails.indexOf(activeThumbnail);
-                openLightbox(index);
-            });
-            
-            // Lightbox functionality
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxTitle = document.getElementById('lightbox-title');
-            const lightboxDesc = document.getElementById('lightbox-desc');
-            const currentCount = document.getElementById('current-count');
-            const totalCount = document.getElementById('total-count');
-            const closeLightbox = document.querySelector('.close-lightbox');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-            let currentIndex = 0;
-            
-            function openLightbox(index) {
-                currentIndex = index;
-                updateLightboxContent();
-                
-                lightbox.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                
-                // Add show class after small delay to trigger animation
-                setTimeout(() => {
-                    lightbox.classList.add('show');
-                }, 10);
-                
-                // Update total count
-                totalCount.textContent = visibleThumbnails.length;
-            }
-            
-            function updateLightboxContent() {
-                if (visibleThumbnails.length === 0) return;
-                
-                const thumbnail = visibleThumbnails[currentIndex];
-                const src = thumbnail.getAttribute('data-src');
-                const title = thumbnail.getAttribute('data-title');
-                const desc = thumbnail.getAttribute('data-desc');
-                
-                // Animate content change
-                lightbox.querySelector('.lightbox-content').style.opacity = '0';
-                
-                setTimeout(() => {
-                    lightboxImg.src = src;
-                    lightboxTitle.textContent = title;
-                    lightboxDesc.textContent = desc;
-                    currentCount.textContent = currentIndex + 1;
-                    
-                    lightbox.querySelector('.lightbox-content').style.opacity = '1';
-                }, 300);
-            }
-            
-            // Close lightbox
-            closeLightbox.addEventListener('click', function() {
-                lightbox.classList.remove('show');
-                
-                // Hide lightbox after animation completes
-                setTimeout(() => {
-                    lightbox.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }, 300);
-            });
-            
-            // Navigate through images
-            prevBtn.addEventListener('click', function() {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                } else {
-                    currentIndex = visibleThumbnails.length - 1;
-                }
-                updateLightboxContent();
-            });
-            
-            nextBtn.addEventListener('click', function() {
-                if (currentIndex < visibleThumbnails.length - 1) {
-                    currentIndex++;
-                } else {
-                    currentIndex = 0;
-                }
-                updateLightboxContent();
-            });
-            
-            // Close lightbox when clicking outside
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) {
-                    closeLightbox.click();
-                }
-            });
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (lightbox.style.display === 'block') {
-                    if (e.key === 'Escape') {
-                        closeLightbox.click();
-                    } else if (e.key === 'ArrowLeft') {
-                        prevBtn.click();
-                    } else if (e.key === 'ArrowRight') {
-                        nextBtn.click();
-                    }
-                }
-            });
-            
-            // Auto slideshow for featured image
-            let slideshowInterval;
-            
-            function startSlideshow() {
-                slideshowInterval = setInterval(() => {
-                    const activeThumbnail = document.querySelector('.gallery-thumbnail.active');
-                    const activeIndex = visibleThumbnails.indexOf(activeThumbnail);
-                    let nextIndex = activeIndex + 1;
-                    
-                    if (nextIndex >= visibleThumbnails.length) {
-                        nextIndex = 0;
-                    }
-                    
-                    updateActiveThumbnail(visibleThumbnails[nextIndex]);
-                    updateFeaturedImage(visibleThumbnails[nextIndex]);
-                }, 5000);
-            }
-            
-            function stopSlideshow() {
-                clearInterval(slideshowInterval);
-            }
-            
-            // Start slideshow and stop on user interaction
-            startSlideshow();
-            
-            document.querySelector('.featured-slide').addEventListener('mouseenter', stopSlideshow);
-            document.querySelector('.gallery-thumbnails').addEventListener('mouseenter', stopSlideshow);
-            
-            document.querySelector('.featured-slide').addEventListener('mouseleave', startSlideshow);
-            document.querySelector('.gallery-thumbnails').addEventListener('mouseleave', startSlideshow);
-            
-            // Update the view button in each thumbnail
-            const viewButtons = document.querySelectorAll('.view-all-btn');
-            if (viewButtons.length > 0) {
-                viewButtons.forEach(button => {
-                    button.style.backgroundColor = '#e63946';
-                });
-                
-                viewButtons.forEach(button => {
-                    button.addEventListener('mouseenter', function() {
-                        this.style.backgroundColor = '#c1272d';
-                    });
-                    
-                    button.addEventListener('mouseleave', function() {
-                        this.style.backgroundColor = '#e63946';
-                    });
-                });
-            }
-        });
-
-        // Election Results Charts
-        document.addEventListener('DOMContentLoaded', function() {
-            // District Chart - Showing Zafer Party results by district
-            const districtCtx = document.getElementById('districtChart').getContext('2d');
-            new Chart(districtCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Palandöken', 'Merkez', 'Yakutiye', 'Aziziye', 'Pasinler'],
-                    datasets: [{
-                        label: 'Zafer Partisi Oy Oranı (%)',
-                        data: [26.8, 25.4, 24.2, 23.1, 22.7],
-                        backgroundColor: '#e63946',
-                        borderWidth: 0,
-                        borderRadius: 4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 30,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // Growth Chart - Showing Zafer Party growth over elections
-            const growthCtx = document.getElementById('growthChart').getContext('2d');
-            new Chart(growthCtx, {
-                type: 'line',
-                data: {
-                    labels: ['2018', '2019', '2023'],
-                    datasets: [{
-                        label: 'Zafer Partisi Oy Oranı (%)',
-                        data: [9.2, 15.8, 25.4],
-                        fill: {
-                            target: 'origin',
-                            above: 'rgba(230, 57, 70, 0.1)'
-                        },
-                        borderColor: '#e63946',
-                        tension: 0.3,
-                        borderWidth: 3,
-                        pointBackgroundColor: '#e63946',
-                        pointRadius: 5
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 30,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html> 
