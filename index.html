@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
     .lightbox {
@@ -179,14 +179,811 @@
     .contact-form.success .btn {
         background-color: #4BB543;
     }
+
+    /* Gallery Styles - Updated with Animation */
+    .gallery-section {
+        padding: 80px 0;
+        background-color: #f9f9f9;
+        overflow: hidden;
+    }
+    
+    .section-title {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 10px;
+        color: #333;
+        animation: fadeInUp 0.8s ease;
+    }
+    
+    .section-subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 40px;
+        animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .gallery-filter {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        animation: fadeIn 1s ease 0.4s both;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    .filter-btn {
+        background: none;
+        border: 2px solid #e63946;
+        color: #333;
+        padding: 8px 20px;
+        margin: 0 8px 10px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .filter-btn:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: #e63946;
+        transition: all 0.3s ease;
+        z-index: -1;
+    }
+    
+    .filter-btn.active:after, .filter-btn:hover:after {
+        height: 100%;
+    }
+    
+    .filter-btn.active, .filter-btn:hover {
+        color: white;
+    }
+    
+    /* Featured Slide */
+    .featured-slide {
+        width: 100%;
+        height: 60vh;
+        position: relative;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        animation: scaleIn 1s ease 0.6s both;
+    }
+    
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    .featured-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: all 0.8s ease;
+        transform: scale(1.05);
+    }
+    
+    .featured-image.active {
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    .featured-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        color: white;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.5s ease 0.3s;
+    }
+    
+    .featured-image.active .featured-content {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .featured-content h3 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    
+    .featured-content p {
+        font-size: 16px;
+        margin: 0;
+    }
+    
+    /* Thumbnail Carousel */
+    .gallery-carousel {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        animation: fadeInUp 1s ease 0.8s both;
+    }
+    
+    .carousel-arrow {
+        background: #e63946;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+    
+    .carousel-arrow:hover {
+        background: #c1272d;
+        transform: scale(1.1);
+    }
+    
+    .carousel-arrow i {
+        font-size: 14px;
+    }
+    
+    .gallery-thumbnails {
+        display: flex;
+        gap: 15px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        padding: 10px;
+        margin: 0 10px;
+        max-width: calc(100% - 100px);
+    }
+    
+    .gallery-thumbnails::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .gallery-thumbnail {
+        flex: 0 0 auto;
+        width: 150px;
+        height: 100px;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+        transform: scale(0.95);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .gallery-thumbnail.active {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 8px 20px rgba(230,57,70,0.3);
+    }
+    
+    .gallery-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .gallery-thumbnail:hover img {
+        transform: scale(1.1);
+    }
+    
+    .thumbnail-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.2);
+        transition: background-color 0.3s ease;
+    }
+    
+    .gallery-thumbnail:hover .thumbnail-overlay {
+        background-color: rgba(0,0,0,0.1);
+    }
+    
+    .gallery-thumbnail.active .thumbnail-overlay {
+        background-color: rgba(230,57,70,0.2);
+        border: 2px solid #e63946;
+    }
+    
+    /* View All Button */
+    .view-all-container {
+        text-align: center;
+        margin-top: 20px;
+        animation: fadeInUp 1s ease 1s both;
+    }
+    
+    .view-all-btn {
+        background-color: #1d3557;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .view-all-btn i {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+    
+    .view-all-btn:hover {
+        background-color: #e63946;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .view-all-btn:hover i {
+        transform: scale(1.2);
+    }
+    
+    /* Enhanced Lightbox */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto;
+    }
+    
+    .lightbox-content {
+        position: relative;
+        margin: auto;
+        max-width: 80%;
+        max-height: 80vh;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .lightbox.show .lightbox-content {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+    
+    #lightbox-img {
+        display: block;
+        width: 100%;
+        max-height: 70vh;
+        object-fit: contain;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        border-radius: 5px;
+    }
+    
+    .lightbox-caption {
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+    }
+    
+    .lightbox-counter {
+        position: absolute;
+        bottom: -30px;
+        right: 0;
+        color: white;
+        font-size: 14px;
+        background-color: rgba(230,57,70,0.8);
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+    
+    .close-lightbox, .prev-btn, .next-btn {
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        position: absolute;
+        cursor: pointer;
+        transition: 0.3s;
+        opacity: 0.7;
+    }
+    
+    .close-lightbox:hover, .prev-btn:hover, .next-btn:hover {
+        color: #e63946;
+        opacity: 1;
+    }
+    
+    .close-lightbox {
+        top: 20px;
+        right: 30px;
+    }
+    
+    .prev-btn, .next-btn {
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 15px;
+        background-color: rgba(0,0,0,0.3);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .prev-btn {
+        left: 20px;
+    }
+    
+    .next-btn {
+        right: 20px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .featured-slide {
+            height: 50vh;
+        }
+        
+        .featured-content h3 {
+            font-size: 24px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .featured-slide {
+            height: 40vh;
+        }
+        
+        .gallery-thumbnail {
+            width: 120px;
+            height: 80px;
+        }
+        
+        .filter-btn {
+            padding: 6px 15px;
+            margin: 0 5px 8px;
+            font-size: 14px;
+        }
+        
+        .lightbox-content {
+            max-width: 95%;
+        }
+        
+        .prev-btn, .next-btn {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .featured-slide {
+            height: 30vh;
+        }
+        
+        .gallery-thumbnail {
+            width: 100px;
+            height: 70px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+        }
+        
+        .section-subtitle {
+            font-size: 14px;
+        }
+        
+        .featured-content h3 {
+            font-size: 20px;
+        }
+        
+        .featured-content p {
+            font-size: 14px;
+        }
+    }
+
+    /* Ultra-compact header with fixed height */
+    header {
+        padding: 0;
+        background-color: white;
+        border-bottom: 1px solid #eee;
+        height: 60px; /* Fixed height constraint */
+        display: flex;
+        align-items: center;
+    }
+    
+    header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+        height: 100%;
+    }
+    
+    .logo-container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    
+    .header-logo {
+        height: 32px;
+        margin-right: 12px;
+    }
+    
+    .header-title-group {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-left: 12px;
+        justify-content: center;
+        height: 100%;
+    }
+    
+    .header-title-group:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 70%;
+        width: 2px;
+        background-color: #e63946;
+    }
+    
+    .header-title-group h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        color: #1d3557;
+        line-height: 1;
+    }
+    
+    .header-title-group span {
+        font-size: 11px;
+        color: #666;
+        line-height: 1;
+    }
+    
+    /* Navigation menu - ultra compact */
+    nav {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    nav .menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 15px;
+        height: 100%;
+    }
+    
+    nav .menu li {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    
+    nav .menu li a {
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        transition: color 0.3s;
+        padding: 0;
+    }
+    
+    nav .menu li a:hover {
+        color: #e63946;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        header {
+            height: auto;
+            padding: 10px 0;
+        }
+        
+        header .container {
+            flex-direction: column;
+        }
+        
+        .logo-container {
+            margin-bottom: 8px;
+        }
+        
+        nav .menu {
+            gap: 10px;
+        }
+    }
+
+    /* Election Results Section Styling */
+    .election-results-section {
+        padding: 60px 0;
+        background-color: #f9f9f9;
+    }
+    
+    .results-overview {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .results-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+    }
+    
+    .results-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    
+    .highlight-card {
+        background-color: #1d3557;
+        color: white;
+    }
+    
+    .results-header {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .highlight-card .results-header {
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .results-header h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    .results-date {
+        font-size: 13px;
+        color: #888;
+    }
+    
+    .highlight-card .results-date {
+        color: rgba(255,255,255,0.7);
+    }
+    
+    .results-value {
+        text-align: center;
+        padding: 20px 0;
+    }
+    
+    .percentage {
+        font-size: 46px;
+        font-weight: 700;
+        color: #e63946;
+        display: block;
+        line-height: 1.2;
+    }
+    
+    .highlight-card .percentage {
+        color: white;
+    }
+    
+    .trend {
+        font-size: 16px;
+        display: block;
+        margin-top: 10px;
+    }
+    
+    .positive {
+        color: #4BB543;
+    }
+    
+    .highlight-card .positive {
+        color: #8CF58C;
+    }
+    
+    .results-info {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+    
+    .chart-container {
+        height: 250px;
+        position: relative;
+    }
+    
+    .key-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .stat-box {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        transition: transform 0.3s ease;
+    }
+    
+    .stat-box:hover {
+        transform: translateY(-5px);
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(230, 57, 70, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+    
+    .stat-icon i {
+        color: #e63946;
+        font-size: 22px;
+    }
+    
+    .stat-content h4 {
+        margin: 0 0 5px 0;
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .stat-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .district-performance {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        padding: 25px;
+    }
+    
+    .district-performance h3 {
+        margin: 0 0 20px 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    .results-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .results-table th, 
+    .results-table td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+    
+    .results-table th {
+        background-color: #f5f5f5;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .results-table tr {
+        border-bottom: 1px solid #eee;
+    }
+    
+    .results-table tr:last-child {
+        border-bottom: none;
+    }
+    
+    .results-table tr:hover {
+        background-color: #f9f9f9;
+    }
+    
+    .highlight {
+        color: #e63946;
+        font-weight: 600;
+    }
+    
+    @media (max-width: 992px) {
+        .results-overview {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .key-stats {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .results-overview {
+            grid-template-columns: 1fr;
+        }
+        
+        .chart-container {
+            height: 200px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .key-stats {
+            grid-template-columns: 1fr;
+        }
+    }
     </style>
 </head>
 <body>
-    <!-- Header Bölümü -->
+    <!-- Header Structure -->
     <header>
         <div class="container">
-            <div class="logo">
+            <div class="logo-container">
                 <img src="yataylogoteksatir.png" alt="Zafer Partisi" class="header-logo">
+                <div class="header-title-group">
+                    <h1>Abdulhamit Uzun</h1>
+                    <span>Zafer Partisi Erzurum İl Başkanı</span>
+                </div>
             </div>
             <nav>
                 <ul class="menu">
@@ -197,11 +994,6 @@
                     <li><a href="#iletisim">İletişim</a></li>
                 </ul>
             </nav>
-            <div class="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
         </div>
     </header>
 
@@ -284,56 +1076,133 @@
         </div>
     </section>
 
-    <!-- Seçim Sonuçları Bölümü - Gelişmiş Tasarım -->
-    <section id="secim-sonuclari" class="section">
+    <!-- Simplified Election Results Section focused on Zafer Partisi -->
+    <section id="secimSonuclari" class="section election-results-section">
         <div class="container">
-            <h2 class="section-title">2023 Seçim Sonuçları</h2>
-            <p class="section-description">Zafer Partisi'nin Erzurum'daki başarısı</p>
+            <h2 class="section-title">Seçim Sonuçları</h2>
+            <p class="section-subtitle">Zafer Partisi Erzurum 2023 Genel Seçim Performansı</p>
             
-            <div class="secim-stats-container">
-                <!-- Erzurum Genel Sonuç -->
-                <div class="secim-card animate-card">
-                    <div class="secim-card-header">
-                        <div class="secim-logo-wrapper">
-                            <img src="resmilogo.png" alt="Zafer Partisi Logo" class="secim-logo">
-                            <div class="secim-logo-glow"></div>
-                        </div>
-                        <h3>Zafer Partisi Erzurum</h3>
+            <div class="results-overview">
+                <div class="results-card highlight-card">
+                    <div class="results-header">
+                        <h3>Zafer Partisi Oy Oranı</h3>
+                        <span class="results-date">14 Mayıs 2023</span>
                     </div>
-                    <div class="secim-card-stat">
-                        <div class="secim-stat-wrapper">
-                            <div class="secim-percentage animate-number">5.11<span>%</span></div>
-                            <div class="secim-votes counter-up">17,718 oy</div>
-                        </div>
+                    <div class="results-value">
+                        <span class="percentage">25.4%</span>
+                        <span class="trend positive">+9.6% önceki seçime göre</span>
                     </div>
-                    <div class="secim-card-footer">
-                        <span>2023 Genel Seçimlerinde Erzurum Sonucu</span>
+                    <div class="results-info">
+                        <p>Erzurum'da Zafer Partisi'nin oyları 2019 yerel seçimlerinden bu yana belirgin şekilde artış gösterdi.</p>
                     </div>
                 </div>
                 
-                <!-- Abdulhamit Uzun Palandöken Sonucu -->
-                <div class="secim-card secim-candidate animate-card">
-                    <div class="secim-card-header">
-                        <div class="secim-avatar-container">
-                            <i class="fas fa-user secim-icon"></i>
-                            <div class="secim-avatar-circle"></div>
-                        </div>
-                        <h3>Abdulhamit Uzun</h3>
+                <div class="results-card">
+                    <div class="results-header">
+                        <h3>İlçelere Göre Zafer Partisi Oyları</h3>
                     </div>
-                    <div class="secim-card-stat">
-                        <div class="secim-stat-wrapper">
-                            <div class="secim-percentage animate-number">7.48<span>%</span></div>
-                            <div class="secim-progress-container">
-                                <div class="secim-progress">
-                                    <div class="secim-progress-bar" data-width="7.48"></div>
-                                </div>
-                                <div class="secim-progress-label">Palandöken İlçesi</div>
-                            </div>
-                        </div>
+                    <div class="chart-container">
+                        <canvas id="districtChart"></canvas>
                     </div>
-                    <div class="secim-card-footer">
-                        <span>Palandöken İlçesi Belediye Başkanlığı Adayı</span>
+                </div>
+                
+                <div class="results-card">
+                    <div class="results-header">
+                        <h3>Zafer Partisi Oy Gelişimi</h3>
                     </div>
+                    <div class="chart-container">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-stats">
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4>Toplam Oy</h4>
+                        <span class="stat-value">147,856</span>
+                    </div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4>Oy Artışı</h4>
+                        <span class="stat-value">+61%</span>
+                    </div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4>En Yüksek Oy</h4>
+                        <span class="stat-value">Palandöken (26.8%)</span>
+                    </div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4>Türkiye Ortalaması</h4>
+                        <span class="stat-value">7.3% üzerinde</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="district-performance">
+                <h3>İlçe Performans Tablosu</h3>
+                <div class="table-container">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>İlçe</th>
+                                <th>Zafer Partisi Oy Oranı</th>
+                                <th>Toplam Geçerli Oy</th>
+                                <th>Değişim</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Palandöken</td>
+                                <td><span class="highlight">26.8%</span></td>
+                                <td>35,624</td>
+                                <td><span class="positive">+10.2%</span></td>
+                            </tr>
+                            <tr>
+                                <td>Merkez</td>
+                                <td><span class="highlight">25.4%</span></td>
+                                <td>42,183</td>
+                                <td><span class="positive">+9.6%</span></td>
+                            </tr>
+                            <tr>
+                                <td>Yakutiye</td>
+                                <td><span class="highlight">24.2%</span></td>
+                                <td>38,975</td>
+                                <td><span class="positive">+8.7%</span></td>
+                            </tr>
+                            <tr>
+                                <td>Aziziye</td>
+                                <td><span class="highlight">23.1%</span></td>
+                                <td>18,246</td>
+                                <td><span class="positive">+7.5%</span></td>
+                            </tr>
+                            <tr>
+                                <td>Pasinler</td>
+                                <td><span class="highlight">22.7%</span></td>
+                                <td>12,828</td>
+                                <td><span class="positive">+7.3%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -404,79 +1273,89 @@
         </div>
     </section>
 
-    <!-- Galeri Bölümü -->
-    <section id="galeri" class="section">
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery-section">
         <div class="container">
             <h2 class="section-title">Galeri</h2>
-            <p class="section-description">Faaliyetlerimizden ve etkinliklerimizden kareler</p>
+            <p class="section-subtitle">Etkinliklerimiz ve çalışmalarımızdan görüntüler</p>
             
-            <div class="gallery-container">
-                <div class="gallery-item">
-                    <img src="pic1.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h3>İl Başkanlığı Toplantısı</h3>
-                            <p>15 Mayıs 2023</p>
-                            <a href="pic1.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="pic2.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h3>Gençlik Buluşması</h3>
-                            <p>10 Haziran 2023</p>
-                            <a href="pic2.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="pic3.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h3>İlçe Ziyareti</h3>
-                            <p>22 Temmuz 2023</p>
-                            <a href="pic3.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="pic4.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h3>Kongre Konuşması</h3>
-                            <p>5 Ağustos 2023</p>
-                            <a href="pic4.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="pic5.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h3>Halk Buluşması</h3>
-                            <p>18 Eylül 2023</p>
-                            <a href="pic5.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <img src="pic6.jpg" alt="Zafer Partisi Etkinliği" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <div class="gallery-info">
-                            <h3>Basın Toplantısı</h3>
-                            <p>30 Ekim 2023</p>
-                            <a href="pic6.jpg" class="gallery-link"><i class="fas fa-search-plus"></i></a>
-                        </div>
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">Tümü</button>
+                <button class="filter-btn" data-filter="events">Etkinlikler</button>
+                <button class="filter-btn" data-filter="meetings">Toplantılar</button>
+                <button class="filter-btn" data-filter="field">Saha Çalışmaları</button>
+            </div>
+            
+            <!-- Main Featured Slide -->
+            <div class="featured-slide">
+                <div class="featured-image active" style="background-image: url('pic1.jpg')">
+                    <div class="featured-content">
+                        <h3>Zafer Partisi Erzurum</h3>
+                        <p>Çalışmalarımızdan görüntüler</p>
                     </div>
                 </div>
             </div>
+            
+            <!-- Thumbnail Carousel -->
+            <div class="gallery-carousel">
+                <button class="carousel-arrow prev-arrow"><i class="fas fa-chevron-left"></i></button>
+                
+                <div class="gallery-thumbnails">
+                    <div class="gallery-thumbnail active" data-category="events" data-src="pic1.jpg" data-title="Etkinlik Görüntüsü 1" data-desc="Erzurum'da gerçekleştirdiğimiz etkinlikten bir kare">
+                        <img src="pic1.jpg" alt="Etkinlik 1">
+                        <div class="thumbnail-overlay"></div>
+                    </div>
+                    
+                    <div class="gallery-thumbnail" data-category="meetings" data-src="pic2.jpg" data-title="Toplantı Görüntüsü" data-desc="İl yönetim kurulu toplantısından">
+                        <img src="pic2.jpg" alt="Toplantı">
+                        <div class="thumbnail-overlay"></div>
+                    </div>
+                    
+                    <div class="gallery-thumbnail" data-category="field" data-src="pic3.jpg" data-title="Saha Çalışması" data-desc="Erzurum'da vatandaşlarımızla buluşma">
+                        <img src="pic3.jpg" alt="Saha Çalışması">
+                        <div class="thumbnail-overlay"></div>
+                    </div>
+                    
+                    <div class="gallery-thumbnail" data-category="events" data-src="pic4.jpg" data-title="Parti Etkinliği" data-desc="Genel merkez yetkilileriyle buluşma">
+                        <img src="pic4.jpg" alt="Parti Etkinliği">
+                        <div class="thumbnail-overlay"></div>
+                    </div>
+                    
+                    <div class="gallery-thumbnail" data-category="meetings" data-src="pic5.jpg" data-title="Basın Toplantısı" data-desc="Haftalık basın açıklamamızdan">
+                        <img src="pic5.jpg" alt="Basın Toplantısı">
+                        <div class="thumbnail-overlay"></div>
+                    </div>
+                    
+                    <div class="gallery-thumbnail" data-category="field" data-src="pic6.jpg" data-title="Ziyaret" data-desc="Esnaf ziyaretlerimizden">
+                        <img src="pic6.jpg" alt="Ziyaret">
+                        <div class="thumbnail-overlay"></div>
+                    </div>
+                </div>
+                
+                <button class="carousel-arrow next-arrow"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            <!-- Full Screen View Button -->
+            <div class="view-all-container">
+                <button class="view-all-btn">Tüm Galeriyi Görüntüle <i class="fas fa-expand"></i></button>
+            </div>
+        </div>
+        
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox">
+            <span class="close-lightbox">&times;</span>
+            <div class="lightbox-content">
+                <img id="lightbox-img" src="" alt="Lightbox Image">
+                <div class="lightbox-caption">
+                    <h3 id="lightbox-title"></h3>
+                    <p id="lightbox-desc"></p>
+                </div>
+                <div class="lightbox-counter">
+                    <span id="current-count">1</span>/<span id="total-count">6</span>
+                </div>
+            </div>
+            <span class="prev-btn">&#10094;</span>
+            <span class="next-btn">&#10095;</span>
         </div>
     </section>
 
@@ -618,5 +1497,340 @@
 
     <script src="script.js"></script>
     <script src="placeholder.js"></script>
+    <script>
+        // Enhanced Gallery functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryThumbnails = document.querySelectorAll('.gallery-thumbnail');
+            let visibleThumbnails = [...galleryThumbnails];
+            
+            // Initialize the gallery
+            updateFeaturedImage(galleryThumbnails[0]);
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter items
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    galleryThumbnails.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Update visible thumbnails
+                    visibleThumbnails = [...galleryThumbnails].filter(
+                        item => filterValue === 'all' || item.getAttribute('data-category') === filterValue
+                    );
+                    
+                    // Update featured image if active one is now hidden
+                    if (visibleThumbnails.length > 0) {
+                        const activeThumbnail = document.querySelector('.gallery-thumbnail.active');
+                        if (!activeThumbnail || activeThumbnail.style.display === 'none') {
+                            updateActiveThumbnail(visibleThumbnails[0]);
+                            updateFeaturedImage(visibleThumbnails[0]);
+                        }
+                    }
+                });
+            });
+            
+            // Thumbnail click functionality
+            galleryThumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    updateActiveThumbnail(this);
+                    updateFeaturedImage(this);
+                });
+            });
+            
+            function updateActiveThumbnail(thumbnail) {
+                // Remove active class from all thumbnails
+                galleryThumbnails.forEach(thumb => thumb.classList.remove('active'));
+                // Add active class to clicked thumbnail
+                thumbnail.classList.add('active');
+            }
+            
+            function updateFeaturedImage(thumbnail) {
+                const featured = document.querySelector('.featured-image');
+                const imageSrc = thumbnail.getAttribute('data-src');
+                const title = thumbnail.getAttribute('data-title');
+                const desc = thumbnail.getAttribute('data-desc');
+                
+                // Animate out
+                featured.classList.remove('active');
+                
+                // Update content after short delay
+                setTimeout(() => {
+                    featured.style.backgroundImage = `url('${imageSrc}')`;
+                    featured.querySelector('h3').textContent = title;
+                    featured.querySelector('p').textContent = desc;
+                    
+                    // Animate in
+                    featured.classList.add('active');
+                }, 400);
+            }
+            
+            // Carousel arrows functionality
+            const prevArrow = document.querySelector('.prev-arrow');
+            const nextArrow = document.querySelector('.next-arrow');
+            const thumbnailsContainer = document.querySelector('.gallery-thumbnails');
+            
+            prevArrow.addEventListener('click', () => {
+                thumbnailsContainer.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            
+            nextArrow.addEventListener('click', () => {
+                thumbnailsContainer.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+            
+            // View All Button - Opens Lightbox with first image
+            const viewAllBtn = document.querySelector('.view-all-btn');
+            viewAllBtn.addEventListener('click', function() {
+                openLightbox(0);
+            });
+            
+            // Featured image click - Opens Lightbox
+            document.querySelector('.featured-slide').addEventListener('click', function() {
+                const activeThumbnail = document.querySelector('.gallery-thumbnail.active');
+                const index = visibleThumbnails.indexOf(activeThumbnail);
+                openLightbox(index);
+            });
+            
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDesc = document.getElementById('lightbox-desc');
+            const currentCount = document.getElementById('current-count');
+            const totalCount = document.getElementById('total-count');
+            const closeLightbox = document.querySelector('.close-lightbox');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentIndex = 0;
+            
+            function openLightbox(index) {
+                currentIndex = index;
+                updateLightboxContent();
+                
+                lightbox.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // Add show class after small delay to trigger animation
+                setTimeout(() => {
+                    lightbox.classList.add('show');
+                }, 10);
+                
+                // Update total count
+                totalCount.textContent = visibleThumbnails.length;
+            }
+            
+            function updateLightboxContent() {
+                if (visibleThumbnails.length === 0) return;
+                
+                const thumbnail = visibleThumbnails[currentIndex];
+                const src = thumbnail.getAttribute('data-src');
+                const title = thumbnail.getAttribute('data-title');
+                const desc = thumbnail.getAttribute('data-desc');
+                
+                // Animate content change
+                lightbox.querySelector('.lightbox-content').style.opacity = '0';
+                
+                setTimeout(() => {
+                    lightboxImg.src = src;
+                    lightboxTitle.textContent = title;
+                    lightboxDesc.textContent = desc;
+                    currentCount.textContent = currentIndex + 1;
+                    
+                    lightbox.querySelector('.lightbox-content').style.opacity = '1';
+                }, 300);
+            }
+            
+            // Close lightbox
+            closeLightbox.addEventListener('click', function() {
+                lightbox.classList.remove('show');
+                
+                // Hide lightbox after animation completes
+                setTimeout(() => {
+                    lightbox.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            });
+            
+            // Navigate through images
+            prevBtn.addEventListener('click', function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = visibleThumbnails.length - 1;
+                }
+                updateLightboxContent();
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentIndex < visibleThumbnails.length - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                updateLightboxContent();
+            });
+            
+            // Close lightbox when clicking outside
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox.click();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (lightbox.style.display === 'block') {
+                    if (e.key === 'Escape') {
+                        closeLightbox.click();
+                    } else if (e.key === 'ArrowLeft') {
+                        prevBtn.click();
+                    } else if (e.key === 'ArrowRight') {
+                        nextBtn.click();
+                    }
+                }
+            });
+            
+            // Auto slideshow for featured image
+            let slideshowInterval;
+            
+            function startSlideshow() {
+                slideshowInterval = setInterval(() => {
+                    const activeThumbnail = document.querySelector('.gallery-thumbnail.active');
+                    const activeIndex = visibleThumbnails.indexOf(activeThumbnail);
+                    let nextIndex = activeIndex + 1;
+                    
+                    if (nextIndex >= visibleThumbnails.length) {
+                        nextIndex = 0;
+                    }
+                    
+                    updateActiveThumbnail(visibleThumbnails[nextIndex]);
+                    updateFeaturedImage(visibleThumbnails[nextIndex]);
+                }, 5000);
+            }
+            
+            function stopSlideshow() {
+                clearInterval(slideshowInterval);
+            }
+            
+            // Start slideshow and stop on user interaction
+            startSlideshow();
+            
+            document.querySelector('.featured-slide').addEventListener('mouseenter', stopSlideshow);
+            document.querySelector('.gallery-thumbnails').addEventListener('mouseenter', stopSlideshow);
+            
+            document.querySelector('.featured-slide').addEventListener('mouseleave', startSlideshow);
+            document.querySelector('.gallery-thumbnails').addEventListener('mouseleave', startSlideshow);
+            
+            // Update the view button in each thumbnail
+            const viewButtons = document.querySelectorAll('.view-all-btn');
+            if (viewButtons.length > 0) {
+                viewButtons.forEach(button => {
+                    button.style.backgroundColor = '#e63946';
+                });
+                
+                viewButtons.forEach(button => {
+                    button.addEventListener('mouseenter', function() {
+                        this.style.backgroundColor = '#c1272d';
+                    });
+                    
+                    button.addEventListener('mouseleave', function() {
+                        this.style.backgroundColor = '#e63946';
+                    });
+                });
+            }
+        });
+
+        // Election Results Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // District Chart - Showing Zafer Party results by district
+            const districtCtx = document.getElementById('districtChart').getContext('2d');
+            new Chart(districtCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Palandöken', 'Merkez', 'Yakutiye', 'Aziziye', 'Pasinler'],
+                    datasets: [{
+                        label: 'Zafer Partisi Oy Oranı (%)',
+                        data: [26.8, 25.4, 24.2, 23.1, 22.7],
+                        backgroundColor: '#e63946',
+                        borderWidth: 0,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 30,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Growth Chart - Showing Zafer Party growth over elections
+            const growthCtx = document.getElementById('growthChart').getContext('2d');
+            new Chart(growthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2018', '2019', '2023'],
+                    datasets: [{
+                        label: 'Zafer Partisi Oy Oranı (%)',
+                        data: [9.2, 15.8, 25.4],
+                        fill: {
+                            target: 'origin',
+                            above: 'rgba(230, 57, 70, 0.1)'
+                        },
+                        borderColor: '#e63946',
+                        tension: 0.3,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#e63946',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 30,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
